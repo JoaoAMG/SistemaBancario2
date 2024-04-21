@@ -21,13 +21,11 @@ usuarios = {}
 def verificar_cpf_existente(cpf):
     return cpf in usuarios
 
-def usuario(nome,cpf,dtnascimento,endereco):
-    if len(cpf)>= 12:
-        nome = str(input("Digite seu nome: "))
-        dtnascimento = str(input("Digite sua idade: dia/mes/ano "))
-        cpf = str(input("informe seu cpf(sem tracos e pontos): "))
-        endereco = str(input("informe seu endereço(somente logradouro,número - cidade - bairro - cidade/sigla estado.)"))
-    
+def usuario(nome, cpf, dtnascimento, endereco):
+    if len(cpf) != 11:
+        print("CPF inválido! O CPF deve conter exatamente 11 dígitos.")
+        return None, None, None, None
+
     if not verificar_cpf_existente(cpf):
         usuarios[cpf] = {
             'nome': nome,
@@ -39,7 +37,7 @@ def usuario(nome,cpf,dtnascimento,endereco):
         print("Usuário cadastrado com sucesso!")
     else:
         print("CPF já cadastrado! Não é possível cadastrar novamente.")
-    return(nome,cpf,dtnascimento,endereco)
+    return nome, cpf, dtnascimento, endereco
 
     
 def contas(cpf,usuarios):
